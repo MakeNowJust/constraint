@@ -27,7 +27,7 @@ func Example() {
 		"fizz,!buzz !foo,bar",
 	} {
 		c, _ := constraint.Parse(s)
-		fmt.Printf("%-19s => %t\n", s, c.Eval(tags))
+		fmt.Printf("%-19s => %t\n", c, c.Eval(tags))
 	}
 	// Output:
 	// foo                 => true
@@ -35,7 +35,7 @@ func Example() {
 	// !fizz               => true
 	// fizz foo buzz       => true
 	// foo,bar             => true
-	// fizz,!buzz !foo,bar => false
+	// fizz,!buzz bar,!foo => false
 }
 
 func ExampleIsValidTag() {

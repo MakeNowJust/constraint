@@ -7,5 +7,15 @@ jobs:
     working_directory: /go/src/github.com/MakeNowJust/constraint
     steps:
       - checkout
-      - run: go get -v -t -d ./...
-      - run: go test -v ./...
+      - run:
+          name: Prepare
+          command: |
+            go get -v -t -d ./...
+      - run:
+          name: Run test
+          command: |
+            go test -v -cover -race -coverprofile=coverage.txt ./...
+      - run:
+          name: Send coverage
+          command: |
+            bash <(curl -s https://codecov.io/bash)

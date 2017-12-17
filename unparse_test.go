@@ -7,8 +7,8 @@ import (
 func TestUnparse(t *testing.T) {
 	for _, c := range []*Constraint{
 		nil,
-		&Constraint{},
-		&Constraint{conditions: []*condition{&condition{}}},
+		{},
+		{conditions: []*condition{{}}},
 	} {
 		s, err := Unparse(c)
 		if err == nil {
